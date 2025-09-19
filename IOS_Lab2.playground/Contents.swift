@@ -59,5 +59,7 @@ class Chef {
         }
     }
 }
-let chef = Chef(name: "Гордон Рамзі", favoriteMeal: meals[1])
-chef.showFavoriteMeal()
+let chef1 = Chef(name: "Гордон Рамзі", favoriteMeal: meals[1])
+let chef2 = Chef(name: "Каньє Уест", favoriteMeal: meals[0])
+chef1.showFavoriteMeal()
+chef2.showFavoriteMeal()
