@@ -1,9 +1,12 @@
 import UIKit
+
+
 struct Meal {
     var name: String;
     var calories: Int?;
     var type: String?;
     var mealType: MealType;
+    
     func describe() {
         print(describeMeal(meal: self))
     }
@@ -15,7 +18,7 @@ enum MealType: String {
     case dinner = "Вечеря"
 }
 
-func describeMeal(meal:Meal) -> String {
+func describeMeal(meal: Meal) -> String {
     var description = "Страва: \(meal.name), Прийом їжі: \(meal.mealType)"
     if let calories = meal.calories {
         description += ", Калорійність: \(calories)"
@@ -30,7 +33,7 @@ let meals: [Meal] = [
     Meal(name: "Борщ", calories: 250, type: "Перша страва", mealType: .lunch),
     Meal(name: "Стейк", calories: 400, type: "Друга страва", mealType: .lunch),
     Meal(name: "Омлет", calories: 180, type: "Сніданок", mealType: .breakfast),
-    Meal(name: "Салат", calories: 70, type: "Закуска", mealType: .dinner)
+    Meal(name: "Салат", calories: nil, type: "Закуска", mealType: .dinner)
 ]
 
 for meal in meals {
@@ -59,7 +62,22 @@ class Chef {
         }
     }
 }
+
 let chef1 = Chef(name: "Гордон Рамзі", favoriteMeal: meals[1])
 let chef2 = Chef(name: "Каньє Уест", favoriteMeal: meals[0])
 chef1.showFavoriteMeal()
 chef2.showFavoriteMeal()
+
+func zahyst(of meals: [Meal]) -> Double {
+    var result = 0.0
+    for meal in meals {
+        guard let calories = meal.calories else {
+            return 0
+        }
+        result += Double(calories)
+    }
+    return result / Double(meals.count)
+}
+
+let avg = zahyst(of: meals)
+print("Середня калорійність: \(avg)")
